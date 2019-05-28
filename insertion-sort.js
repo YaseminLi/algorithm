@@ -1,11 +1,21 @@
-//插入排序法
+//插入排序法 扑克牌
 //数组进行选择排序
 // [8,5,1,3,7,2,4,6]
-//取第二个元素，与前面元素比大小
-// [5,8,1,3,7,2,4,6]
-//取第三个元素，与第二个元素比大小，如果交换了位置，再和第一个元素比大小
-// [5,1,8,3,7,2,4,6]
-//……
+//在已排序序列中从后向前扫描，找到相应位置并插入。
+function insertionSort(arr) {
+    //将第i个元素向前插入到相应位置
+    for (var i = 1; i < arr.length; i++) {
+        var m = arr[i];
+        //从后向前扫描已排序的数组
+        for (var j = i; j >0&&arr[j-1]>m; j--) {
+                arr[j] = arr[j-1]; 
+        }
+        //在相应位置插入
+        arr[j]=m;
+    }
+    return arr;
+}
+module.exports={insertionSort}
 // function insertionSort(arr){
 //     for(let i=1;i<arr.length;i++){
 //         // for(let j=i;j>0;j--){
@@ -44,17 +54,3 @@
 //     }
 //     return arr;
 // }
-function insertionSort(arr) {
-    for (var i = 1; i < arr.length; i++) {
-        var m = arr[i];
-        for (var j = i; j >0&&arr[j-1]>m; j--) {
-                arr[j] = arr[j-1]; 
-        }
-        arr[j]=m;
-    }
-    return arr;
-}
-
-const array = [8,1,2,3,5,6,4,7];
-const arraySort = insertionSort(array);
-console.log(arraySort)

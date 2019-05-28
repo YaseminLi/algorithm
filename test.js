@@ -1,1 +1,12 @@
-const arr=[{'xiaoming':98},{'xiaohong':100}];
+function a(b) {
+    console.log('a');
+    b();
+    console.log('a')
+}
+function b() {
+    console.log('b');
+
+}
+
+a();
+
