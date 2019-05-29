@@ -7,13 +7,13 @@ function _merge(arr, l, mid, r) {
     }
     for (let k = l, i = 0, j = mid-l+1; k <= r; k++) {
         //设置临界值
-        if (i > mid) {
+        if (i > mid-l) {
             arr[k] = b[j];
-            j++
-        } else if (j > r) {
+            j++;
+        } else if (j > r-l) {
             //设置临界值
             arr[k] = b[i];
-            i++
+            i++;
         } else if (b[i] > b[j]) {
             arr[k] = b[j];
             j++;
@@ -26,16 +26,19 @@ function _merge(arr, l, mid, r) {
 }
 
 function mergeSortFloor(arr) {
-    for(let n=2;n<=arr.length;n=n*2){
-        for(let l=0;l+n-1<=arr.length-1;l+=n){
-            let r=l+n-1
+    let len=arr.length
+    for(let n=2;n/2<=len;n=n*2){
+        //n代表每轮归并元素的个数
+        for(let l=0;l<len;l+=n){
+            let r=l+n-1;
             let mid=Math.floor((l+r)/2);
-            _merge(arr,l,mid,r);
+            if(arr[mid]>arr[mid+1])
+            _merge(arr,l,mid,Math.min(r,len-1));
         }
     }
     return arr;
 }
-// let arr = [8, 1, 5, 3, 7, 2, 4, 6];
+// let arr = [ 10, 1, 5, 6, 2, 8, 3, 9, 4, 7 ];
 // const arraySort = mergeSortFloor(arr);
 // console.log(arraySort);
 module.exports={mergeSortFloor};

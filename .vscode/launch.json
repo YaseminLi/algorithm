@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/merge-sort-floor.js"
+            "program": "${workspaceFolder}/quick-sort-double.js"
         }
     ]
 }

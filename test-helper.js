@@ -2,6 +2,7 @@ const { selectionSort} = require('./selection-sort');
 const { insertionSort } = require('./insertion-sort');
 const { mergeSort } = require('./merge-sort');
 const { mergeSortFloor } = require('./merge-sort-floor');
+const { quickSort} = require('./quick-sort');
 
 //生成随机数组
 function generateRandomArray(n, rangeL, rangeR) {
@@ -15,10 +16,11 @@ function generateRandomArray(n, rangeL, rangeR) {
 function runTime(arr) {
     const start = Date.now();
     console.log(start);
-    // selectionSort(arr);//77ms
-    // insertionSort(arr);//39ms
-    mergeSort(arr);//25ms
+    // selectionSort(arr);
+    // insertionSort(arr);
+    // mergeSort(arr);//25ms
     // mergeSortFloor(arr)//29ms
+    quickSort(arr);
     const end = Date.now();
     console.log(end);
     const runTime = end - start;
@@ -26,7 +28,16 @@ function runTime(arr) {
 }
 // let arr=generateRandomArray(10000,0,10000);
 let arr = []
-for (var i = 0 ; i < 10000000; i++) {
-    arr[i] = 10000000-i;
+for (var i = 0 ; i < 100000; i++) {
+    arr[i] = 100000-i;
 }
 runTime(arr);
+
+//排序检验
+const arrSort=mergeSortFloor(arr);
+for (let i=0;i<arrSort.length;i++){
+    if(arr[i]>arr[i+1]){
+        console.log('排序错误');
+        return;
+    }
+}
