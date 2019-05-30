@@ -3,6 +3,8 @@ const { insertionSort } = require('./insertion-sort');
 const { mergeSort } = require('./merge-sort');
 const { mergeSortFloor } = require('./merge-sort-floor');
 const { quickSort} = require('./quick-sort');
+const { quickSort2} = require('./quick-sort2');
+const { quickSort3} = require('./quick-sort3');
 
 //生成随机数组
 function generateRandomArray(n, rangeL, rangeR) {
@@ -18,15 +20,17 @@ function runTime(arr) {
     console.log(start);
     // selectionSort(arr);
     // insertionSort(arr);
-    // mergeSort(arr);//25ms
+    mergeSort(arr);//26ms
     // mergeSortFloor(arr)//29ms
-    quickSort(arr);
+    // quickSort(arr);
+    // quickSort2(arr);
+    // quickSort3(arr);
     const end = Date.now();
     console.log(end);
     const runTime = end - start;
     console.log('运行时间是：' + runTime)
 }
-// let arr=generateRandomArray(10000,0,10000);
+// let arr=generateRandomArray(10000,0,10);
 let arr = []
 for (var i = 0 ; i < 100000; i++) {
     arr[i] = 100000-i;
