@@ -8,23 +8,24 @@
 
 //方法2:优化后
 function selectionSort(arr) {
-    //在未排序数组中依次寻找第i个最小元素
-    for (let i = 0; i < arr.length; i++) { 
+    for (let i = 0; i < arr.length; i++) {
         let minIndex = i;
-        //寻找当前数组中最小元素的索引
-        for(let j=i;j<arr.length;j++){
-            if(arr[minIndex]>arr[j]){
-                minIndex=j;
+        //寻找未排序数组中最小元素的索引
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[minIndex] > arr[j]) {
+                minIndex = j;
             }
         }
         //将找到的最小元素放入位置i
-        let m=arr[i];
-        arr[i] = arr[minIndex];
-        arr[minIndex] = m;
+        if (i !== minIndex) {
+            let m = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = m;
+        }
     }
     return arr;
 }
-module.exports={selectionSort}
+module.exports = { selectionSort }
 // 方法1:
 // function selectionSort(arr) {
 //     for (let i = 0; i < arr.length; i++) {
