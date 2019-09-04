@@ -1,18 +1,13 @@
 //selection sort
-function selectionSort(nums) {
-    for (let i = 0; i < nums.length; i++) {
-        let minIndex = i
-        for (let j = i+1; j < nums.length; j++) {
-            if (nums[j] < nums[minIndex]) {
-                minIndex = j
-            }
-        }
-        if (i !== minIndex) {
-            let m = nums[i]
-            nums[i] = nums[minIndex]
-            nums[minIndex] = m
+function insertSort(nums) {
+    for (let i = 1; i < nums.length; i++) {
+        //寻找nums[i]的合适位置
+        for (let j = i; j > 0 && nums[j] < nums[j - 1]; j--) {
+            let m = nums[j]
+            nums[j] = nums[j - 1]
+            nums[j - 1] = m
         }
     }
     return nums
 }
-console.log(selectionSort([1, 3, 8, 9, 2, 4, 7, 6, 5]));
+console.log(insertSort([7, 3, 8, 9, 2, 4, 1, 6, 5]));

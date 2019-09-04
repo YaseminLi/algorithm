@@ -4,10 +4,11 @@
 //在已排序序列中从后向前扫描，找到相应位置并插入。
 function insertionSort(arr) {
     //将第i个元素向前插入到相应位置
-    for (var i = 1; i < arr.length; i++) {
-        var m = arr[i];
+    for (let i = 1; i < arr.length; i++) {
+        let m = arr[i];
         //从后向前扫描已排序的数组
-        for (var j = i; j >0&&arr[j-1]>m; j--) {
+        let j=i
+        for (j; j >0&&arr[j-1]>m; j--) {
                 arr[j] = arr[j-1]; 
         }
         //在相应位置插入
