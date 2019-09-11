@@ -1,10 +1,23 @@
 //实现一个最大堆
 var MaxHeap = /** @class */ (function () {
-    function MaxHeap(capacity) {
-        this.data = new Array(capacity + 1);
-        // this.data = Array.from({ length: capacity + 1 }, v => null)
-        this.count = 0;
-        this.capacity = capacity;
+    function MaxHeap(item) {
+        var _this = this;
+        //如果传入数字，给堆开辟相应的空间
+        if (typeof item === 'number') {
+            this.data = new Array(item + 1);
+            this.count = 0;
+            this.capacity = item;
+        }
+        //如果传入数组，将其转化为最大堆
+        if (item instanceof Array) {
+            this.data = new Array(item.length + 1);
+            //将数组放入堆中存储，从索引1开始
+            item.forEach(function (value, index) { _this.data[index + 1] = value; });
+            this.count = item.length;
+            for (var i = Math.floor(this.count / 2); i >= 1; i--) {
+                this.shiftDown(i);
+            }
+        }
     }
     //从下往上比较节点大小
     MaxHeap.prototype.shiftUp = function (count) {
@@ -40,9 +53,6 @@ var MaxHeap = /** @class */ (function () {
         }
         this.data[k] = min;
     };
-    MaxHeap.prototype["delete"] = function () {
-        //删除data
-    };
     //返回堆的大小
     MaxHeap.prototype.size = function () {
         return this.count;
@@ -65,7 +75,7 @@ var MaxHeap = /** @class */ (function () {
     };
     MaxHeap.prototype.extractMax = function () {
         if (this.count === 0) {
-            return '堆中已经没有数据了';
+            console.log('堆中已经没有数据了');
         }
         var item = this.data[1];
         this.data[1] = this.data[this.count];
@@ -76,19 +86,23 @@ var MaxHeap = /** @class */ (function () {
     };
     return MaxHeap;
 }());
-var heap = new MaxHeap(10);
-heap.insert(1);
-heap.insert(3);
-heap.insert(2);
-heap.insert(6);
-heap.insert(5);
-heap.insert(4);
-heap.log();
-console.log(heap.extractMax());
-console.log(heap.extractMax());
-console.log(heap.extractMax());
-console.log(heap.extractMax());
-console.log(heap.extractMax());
-console.log(heap.extractMax());
-console.log(heap.extractMax());
-console.log(heap.extractMax());
+
+
+function maxHeap1(arr) {
+    let maxHeap=new MaxHeap(arr.length)
+    for(let i=0;i<arr.length;i++){
+        maxHeap.insert(arr[i])
+    }
+    for(let i=arr.length-1;i>=0;i--){
+        arr[i]=maxHeap.extractMax()
+    }
+    return arr
+}
+function maxHeap2(arr) {
+    let maxHeap=new MaxHeap(arr)
+    for(let i=arr.length-1;i>=0;i--){
+        arr[i]=maxHeap.extractMax()
+    }
+    return arr
+}
+module.exports={maxHeap1,maxHeap2}

@@ -1,22 +1,42 @@
 //实现一个最大堆
 class MaxHeap {
-    private data: Array<number>
-    private count: number
-    private capacity: number
+    private data: Array<number> //存储数据的数组
+    private count: number //数据量
+    private capacity: number //数组空间
+
+    constructor(item) {
+        //如果传入数字，给堆开辟相应的空间
+        if(typeof item==='number'){
+            this.data = new Array(item + 1)
+            this.count = 0
+            this.capacity = item
+        }
+        //如果传入数组，将其转化为最大堆
+        if(item instanceof Array){
+            this.data=new Array(item.length+1)
+            //将数组放入堆中存储，从索引1开始
+            item.forEach((value,index)=>{this.data[index+1]=value})
+            this.count=item.length
+            for(let i=Math.floor(this.count/2);i>=1;i--){
+                this.shiftDown(i)
+            }
+        }
+    }
+
     //从下往上比较节点大小
     private shiftUp(count) {
-        let max=this.data[count]
+        let max = this.data[count]
         for (count; count > 1;) {
             let isLeft = count % 2
             var parentCount = isLeft === 0 ? count / 2 : (count - 1) / 2;
-            if (max> this.data[parentCount]) {
-               this.data[count]=this.data[parentCount]
+            if (max > this.data[parentCount]) {
+                this.data[count] = this.data[parentCount]
                 count = parentCount
             } else {
                 break
             }
         }
-        this.data[count]=max
+        this.data[count] = max
     }
     //从上往下比较节点大小
     private shiftDown(k) {
@@ -35,15 +55,6 @@ class MaxHeap {
             k = j
         }
         this.data[k] = min
-    }
-    constructor(capacity) {
-        this.data = new Array(capacity + 1)
-        // this.data = Array.from({ length: capacity + 1 }, v => null)
-        this.count = 0
-        this.capacity = capacity
-    }
-    delete() {
-        //删除data
     }
     //返回堆的大小
     size() {
@@ -66,8 +77,8 @@ class MaxHeap {
         console.log(this.data)
     }
     extractMax() {
-        if(this.count===0){
-            return '堆中已经没有数据了'
+        if (this.count === 0) {
+            console.log( '堆中已经没有数据了')
         }
         let item = this.data[1]
         this.data[1] = this.data[this.count]
@@ -77,5 +88,12 @@ class MaxHeap {
         return item
     }
 }
+let arr=[1,3,2,6,5,4]
+let maxheap=new MaxHeap(arr)
+for(let i=arr.length-1;i>=0;i--){
+    arr[i]=maxheap.extractMax()
+}
+console.log(arr);
+
 
 
