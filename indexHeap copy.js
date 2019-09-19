@@ -12,6 +12,7 @@ class IndexHeap {
             let parent = Math.floor((k - 1) / 2)
             if (this.data[maxIndex] > this.data[this.indexes[parent]]) {
                 this.indexes[k] = this.indexes[parent]
+                this.reverse[this.indexes[k]]=k
                 k = parent
             } else {
                 break
@@ -33,6 +34,7 @@ class IndexHeap {
                 break;
             }
             this.indexes[k] = this.indexes[j]
+            this.reverse[this.indexes[k]]=k
             k = j
         }
         this.indexes[k] = minIndex;
@@ -44,7 +46,7 @@ class IndexHeap {
         console.assert(i >= 0 && i < this.capacity)
         this.data[i] = item
         this.indexes[this.count] = i
-        this.reverse[i]=0
+        this.reverse[i]=this.count
         this.shiftUp(this.count++)
         
     }
@@ -54,6 +56,7 @@ class IndexHeap {
         let max = this.data[this.indexes[0]]
         this.count -= 1
         this.indexes[0] = this.indexes[this.count]
+        this.reverse[this.indexes[0]]=0
         this.indexes.pop()
         this.shiftDown(0)
         return max
@@ -94,8 +97,10 @@ indexHeap.insert(50, 4)
 indexHeap.insert(40, 5)
 console.log(indexHeap.data);
 console.log(indexHeap.indexes);
+console.log(indexHeap.reverse);
 indexHeap.change(4,28)
 console.log(indexHeap.data);
 console.log(indexHeap.indexes);
+console.log(indexHeap.reverse);
 
 

@@ -88,8 +88,7 @@ indexHeap.insert(50, 4)
 indexHeap.insert(40, 5)
 console.log(indexHeap.data);
 console.log(indexHeap.indexes);
-indexHeap.change(4,28)
-console.log(indexHeap.data);
-console.log(indexHeap.indexes);
+console.log(indexHeap.maxtrs);
+
 
 

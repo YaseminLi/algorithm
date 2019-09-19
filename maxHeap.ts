@@ -76,7 +76,7 @@ class MaxHeap {
         console.assert(this.count>0)
         let item = this.data[1]
         this.data[1] = this.data[this.count]
-        this.data[this.count] = null
+        this.data.pop()
         this.count--
         this.shiftDown(1)
         return item
