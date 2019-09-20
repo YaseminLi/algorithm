@@ -4,7 +4,6 @@ function binarySearch(arr, target) {
     //在arr[l……r]范围内查找目标值
     let l = 0;
     let r = arr.length - 1
-
     while (l <= r) {
         let mid = Math.floor((l + r) / 2)//查找范围的中间值
         if (arr[mid] === target) {
@@ -53,6 +52,7 @@ function binarySearchFloor(arr, target) {
 // 如果找到target, 返回最后一个target相应的索引index
 // 如果没有找到target, 返回比target大的最小值相应的索引, 如果这个最小值有多个, 返回最小的索引
 // 如果这个target比整个数组的最大元素值还要大, 则不存在这个target的ceil值, 返回整个数组元素个数n
+
 function binarySearchCeil(arr, target) {
     //在arr[l……r]范围内查找目标值
     let l = 0;
