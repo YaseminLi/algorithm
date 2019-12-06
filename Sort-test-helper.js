@@ -5,8 +5,9 @@
 // const { quickSort } = require('./quick-sort');
 // const { quickSort2 } = require('./quick-sort2');
 // const { quickSort3 } = require('./quick-sort3');
-const { maxHeap1, maxHeap2 } = require('./maxHeap.js');
-const { heapSort } = require('./heapSort');
+// const { maxHeap1, maxHeap2 } = require('./maxHeap.js');
+// const { heapSort } = require('./heapSort');
+const {bubbleSort,bubbleSort2}= require('./bubble-sort');
 
 //生成随机数组,n为元素个数，rangeL～rangeR为随机数字的范围
 function generateRandomArray(n, rangeL, rangeR) {
@@ -37,10 +38,7 @@ function testSortTime(sortName, fn, arr) {
 }
 let arr = generateRandomArray(10000, 0, 10000)
 
-// testSortTime('selection-sort',selectionSort,arr)
-// testSortTime('quick-sort3',quickSort3,arr)
-// testSortTime('quick-sort2',quickSort2,arr)
-testSortTime('maxHeap1',maxHeap1,arr)
-testSortTime('maxHeap2',maxHeap2,arr)
-testSortTime('heapSort', heapSort, arr)
+
+testSortTime('bubbleSort', bubbleSort, arr)
+testSortTime('bubbleSort2', bubbleSort2, arr)
 
